@@ -1,10 +1,12 @@
+/* NAV BAR */
 .containerNav {
   display: grid;
-  grid-template-areas: "logo nav";
-  grid-template-columns: 2fr 4fr;
+  grid-template-areas: "logo nav cart";
+  grid-template-columns: 2fr 4fr 1fr;
   background-color: rgb(43, 49, 49);
 }
 
+/* NAV BAR LOGO */
 .divLogo {
   grid-area: logo;
 }
@@ -13,6 +15,7 @@
   color: white;
 }
 
+/* NAV BAR LISTA */
 .containerList {
   grid-area: nav;
   margin: 0;
@@ -40,3 +43,23 @@
 .link:hover {
   color: #c38190;
 }
+
+
+/* CARRITO */
+.containerImgCart{
+  grid-area: cart;
+  margin: 10px;
+  transition: 0.5s;
+}
+
+.imgCarrito{
+  height: 50px;
+}
+
+.containerImgCart:hover{
+    background-color: #c38190;
+    transform: scale(1.1, 1.1)
+}
+
+
+
