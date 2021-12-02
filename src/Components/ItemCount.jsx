@@ -2,8 +2,8 @@ import React , {useState} from 'react';
 
 
 
-const ItemCount = ({stock, inital}) => {
-    const [count, setCount] = useState(1);
+const ItemCount = ({stock, initial}) => {
+    const [count, setCount] = useState(initial);
 
     function addCount(){
         if (count < stock) {
