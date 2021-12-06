@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import ItemCount from './ItemCount';
-import ItemList from './ItemList';
+import ItemDetail from './ItemDetail';
 
 // DATA
 
@@ -10,7 +9,7 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/YZf4m4p/IMG-20201031-WA0010-01.jpg",
-    "stock": "5 en stock",
+    "stock": 5,
 },
 {
     "id": 2,
@@ -18,7 +17,7 @@ const DataProducts = [{
     "price": 700,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/gyP57VC/IMG-20201031-WA0009-01.jpg",
-    "stock": "8 en stock",
+    "stock": 8,
 },
 {
     "id": 3,
@@ -26,7 +25,7 @@ const DataProducts = [{
     "price": 400,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/p18Wb5k/IMG-20201031-WA0011-01.jpg",
-    "stock": "3 en stock",
+    "stock": 3,
 },
 {
     "id": 4,
@@ -34,7 +33,7 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/61PVmhx/Whats-App-Image-2020-11-10-at-11-28-11-4.jpg",
-    "stock": "7 en stock",
+    "stock": 7,
 },
 {
     "id": 5,
@@ -42,7 +41,7 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/5nvL41m/IMG-20201031-WA0014-01.jpg",
-    "stock": "15 en stock",
+    "stock": 15,
 },
 {
     "id": 6,
@@ -50,23 +49,27 @@ const DataProducts = [{
     "price": 550,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/LPX78DX/IMG-20201031-WA0016-01.jpg",
-    "stock": "10 en stock",
+    "stock": 10,
 }
 ]
 
-function createPromise () {
-    return new Promise((resolve) => {
+function createPromise (idFind) {
+    return new Promise((resolve, reject) => {
         setTimeout(function () {
-            resolve(DataProducts);
-        }, 2000);
+            const itemFind = DataProducts.find((e) =>{
+                return e.id === idFind
+            });
+
+            itemFind ? resolve(itemFind) : reject (new Error ("No se encontró el producto"));
+        }, 1000);
     });
 }
 
-const ItemListContainer = ({greeting}) => {
-    const [items, setItems] = useState ([]);
+const ItemDetailContainer = ({idItem = 0}) => {
+    const [items, setItems] = useState (null);
 
     useEffect (() => {
-        let callPromise = createPromise();
+        let callPromise = createPromise(idItem);
 
         callPromise.then( function (promiseItems) {
             setItems(promiseItems);
@@ -81,16 +84,23 @@ const ItemListContainer = ({greeting}) => {
     return (
         <section>
             <div>
-                <h1>{greeting}</h1>
-            </div>
-            <div>
-                <ItemList items={items}/>
-            </div>
-            <div>
-                <ItemCount stock={8} initial={1}/>
+               {items !== null ?
+               <ItemDetail
+                    id={items.id}
+                    name={items.name}
+                    price={items.price}
+                    description={items.description}
+                    img={items.img}
+                    stock={items.stock}
+                />
+            
+                : <p>Cargando productos...</p>
+
+            }
+
             </div>
         </section>
     )
 }
 
-export default ItemListContainer
+export default ItemDetailContainer
