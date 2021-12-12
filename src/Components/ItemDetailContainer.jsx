@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import ItemDetail from './ItemDetail';
+import { useParams } from 'react-router';
 
 // DATA
 
@@ -9,6 +10,7 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/YZf4m4p/IMG-20201031-WA0010-01.jpg",
+    "category": "saten",
     "stock": 5,
 },
 {
@@ -17,6 +19,7 @@ const DataProducts = [{
     "price": 700,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/gyP57VC/IMG-20201031-WA0009-01.jpg",
+    "category": "transfer",
     "stock": 8,
 },
 {
@@ -25,6 +28,7 @@ const DataProducts = [{
     "price": 400,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/p18Wb5k/IMG-20201031-WA0011-01.jpg",
+    "category": "algodon",
     "stock": 3,
 },
 {
@@ -33,6 +37,7 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/61PVmhx/Whats-App-Image-2020-11-10-at-11-28-11-4.jpg",
+    "category": "saten",
     "stock": 7,
 },
 {
@@ -41,6 +46,7 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/5nvL41m/IMG-20201031-WA0014-01.jpg",
+    "category": "saten",
     "stock": 15,
 },
 {
@@ -49,6 +55,7 @@ const DataProducts = [{
     "price": 550,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/LPX78DX/IMG-20201031-WA0016-01.jpg",
+    "category": "fibrana",
     "stock": 10,
 }
 ]
@@ -65,11 +72,12 @@ function createPromise (idFind) {
     });
 }
 
-const ItemDetailContainer = ({idItem = 0}) => {
+const ItemDetailContainer = () => {
     const [items, setItems] = useState (null);
+    const { id } = useParams();
 
     useEffect (() => {
-        let callPromise = createPromise(idItem);
+        let callPromise = createPromise(Number(id));
 
         callPromise.then( function (promiseItems) {
             setItems(promiseItems);
@@ -79,7 +87,7 @@ const ItemDetailContainer = ({idItem = 0}) => {
             function () {
                 console.log("Promesa Finalizada");
             });
-    }, []);
+    }, [id]);
 
     return (
         <section>

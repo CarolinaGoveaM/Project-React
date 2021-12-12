@@ -41,14 +41,18 @@
 
 .link {
   text-decoration: none;
-  color: white;
+  color: white !important;
   font-weight: bold;
 }
 
 .link:hover {
-  color: #c38190;
+  color: #c38190 !important;
 }
 
+/* NAVBAR CATEGORIAS */
+.dropdown-menu{
+  background-color: rgb(43, 49, 49);
+}
 
 /* CARRITO */
 .containerImgCart{
@@ -141,13 +145,13 @@
 
 /* CART - ITEM */
 
-/* .containerCart{
+.containerCart{
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.cart{
+.cartItem{
   margin: 50px;
   border: 2px solid rgb(43, 49, 49);
   border-radius: 10px;
@@ -155,7 +159,7 @@
   background-color: #c38190;
 }
 
-.imgCart{
+.imgCartItem{
   width: 300px;
   border-bottom: 1px solid rgb(43, 49, 49);
 }
@@ -174,9 +178,9 @@
   font-weight: bold;
 }
 
-.parrafCart{
+.parrafCartItem{
   font-style: italic;
-} */
+}
 
 /* DETAIL CONTAINER */
 

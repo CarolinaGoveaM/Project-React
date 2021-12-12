@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import ItemCount from './ItemCount';
+import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
 
 // DATA
@@ -10,7 +10,8 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/YZf4m4p/IMG-20201031-WA0010-01.jpg",
-    "stock": "5 en stock",
+    "category": "saten",
+    "stock": 5,
 },
 {
     "id": 2,
@@ -18,7 +19,8 @@ const DataProducts = [{
     "price": 700,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/gyP57VC/IMG-20201031-WA0009-01.jpg",
-    "stock": "8 en stock",
+    "category": "transfer",
+    "stock": 8,
 },
 {
     "id": 3,
@@ -26,7 +28,8 @@ const DataProducts = [{
     "price": 400,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/p18Wb5k/IMG-20201031-WA0011-01.jpg",
-    "stock": "3 en stock",
+    "category": "algodon",
+    "stock": 3,
 },
 {
     "id": 4,
@@ -34,7 +37,8 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/61PVmhx/Whats-App-Image-2020-11-10-at-11-28-11-4.jpg",
-    "stock": "7 en stock",
+    "category": "saten",
+    "stock": 7,
 },
 {
     "id": 5,
@@ -42,7 +46,8 @@ const DataProducts = [{
     "price": 500,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/5nvL41m/IMG-20201031-WA0014-01.jpg",
-    "stock": "15 en stock",
+    "category": "saten",
+    "stock": 15,
 },
 {
     "id": 6,
@@ -50,23 +55,33 @@ const DataProducts = [{
     "price": 550,
     "description": "Por ahora no hay nada para mostrar",
     "img": "https://i.ibb.co/LPX78DX/IMG-20201031-WA0016-01.jpg",
-    "stock": "10 en stock",
+    "category": "fibrana",
+    "stock": 10,
 }
 ]
 
-function createPromise () {
+function createPromise (category = null) {
     return new Promise((resolve) => {
+        let itemsRespond = [];
+
         setTimeout(function () {
-            resolve(DataProducts);
-        }, 2000);
+            category ? 
+            itemsRespond = DataProducts.filter((item) => {
+               return item.category === category
+            })
+            :
+            itemsRespond = [...DataProducts]
+            resolve(itemsRespond);
+        }, 1000);
     });
 }
 
 const ItemListContainer = ({greeting}) => {
     const [items, setItems] = useState ([]);
+    const { categoryId } = useParams();
 
     useEffect (() => {
-        let callPromise = createPromise();
+        let callPromise = createPromise(categoryId);
 
         callPromise.then( function (promiseItems) {
             setItems(promiseItems);
@@ -76,7 +91,7 @@ const ItemListContainer = ({greeting}) => {
             function () {
                 console.log("Promesa Finalizada");
             });
-    }, []);
+    }, [categoryId]);
 
     return (
         <section>
@@ -85,9 +100,6 @@ const ItemListContainer = ({greeting}) => {
             </div>
             <div>
                 <ItemList items={items}/>
-            </div>
-            <div>
-                <ItemCount stock={8} initial={1}/>
             </div>
         </section>
     )
