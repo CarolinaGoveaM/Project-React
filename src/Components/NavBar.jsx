@@ -7,10 +7,10 @@ const NavBar = () => {
     return (
         <nav className="containerNav">
             <div className="divlogo">
-                <h1 className="logo"> <Link className="link" to="/"> Store</Link></h1>
+                <h2 className="logo"> <Link className="link" to="/"> Store</Link></h2>
             </div>
             <ul className="containerList">
-                <li className="item"> <Link className="link" to="/"> Inicio </Link></li>
+                <li className="item"> <Link className="link" to="/"> Productos </Link></li>
 
                 <li class="nav-item dropdown item">
                     <Link class="nav-link dropdown-toggle link" to="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Categorías </Link>
@@ -23,7 +23,7 @@ const NavBar = () => {
                 </ul>
                 </li>
 
-                <li className="item"> <Link className="link" to="/#"> Nosotros </Link></li>
+                <li className="item"> <Link className="link" to="/nosotros/"> Nosotros </Link></li>
             </ul>
             <CartWidget/>
         </nav>

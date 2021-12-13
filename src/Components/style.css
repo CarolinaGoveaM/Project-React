@@ -9,6 +9,7 @@
   grid-template-areas: "logo nav cart";
   grid-template-columns: 2fr 4fr 1fr;
   background-color: rgb(43, 49, 49);
+  align-items: center;
 }
 
 /* NAV BAR LOGO */
@@ -89,6 +90,8 @@
 
 .titleCount{
   grid-area: titleCount;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .btnRemove{
@@ -97,12 +100,15 @@
   border: 2px solid #c38190;
   color: #c38190;
   border-radius: 3px;
-  padding: 5px 10px;
+  padding: 3px 10px;
 }
 
 .btnRemove:hover{
-  transform: scale(1.1, 1.1);
+  transform: scale(1.2, 1.2);
   font-weight: bold;
+  background-color: rgb(43, 49, 49);
+  color: white;
+  
 }
 
 .count{
@@ -115,12 +121,14 @@
   border: 2px solid #c38190;
   color: #c38190;
   border-radius: 3px;
-  padding: 5px 10px;
+  padding: 3px 10px;
 }
 
 .btnSumar:hover{
-  transform: scale(1.1, 1.1);
+  transform: scale(1.2, 1.2);
   font-weight: bold;
+  background-color: rgb(43, 49, 49);
+  color: white;
 }
 
 .btnAdd{
@@ -135,17 +143,18 @@
 }
 
 .btnAdd span{
-  margin: 0px 65px;
+  margin: 0px 45px;
 }
 
 .btnAdd:hover{
   transform: scale(1.1, 1.1);
-  font-weight: bold;
+  background-color: rgb(43, 49, 49);
+  color: white;
 }
 
 /* CART - ITEM */
 
-.containerCart{
+.containerCartItem{
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -164,18 +173,28 @@
   border-bottom: 1px solid rgb(43, 49, 49);
 }
 
+.titleCartItem{
+  font-size: 1.5rem;
+}
+
+.priceCartItem{
+  font-size: 1.5rem;
+}
+
 .btnCart{
   padding: 10px 25px;
   background-color: white;
   border: 2px solid rgb(43, 49, 49);
   color: #c38190;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-bottom: 10px;
 }
 
 .btnCart:hover{
   transform: scale(1.1, 1.1);
   font-weight: bold;
+  background-color: rgb(43, 49, 49);
+  color: white;
 }
 
 .parrafCartItem{
@@ -183,6 +202,10 @@
 }
 
 /* DETAIL CONTAINER */
+
+.containerCart{
+  margin-top: 20px;
+}
 
 .cart{
   display: grid;
@@ -226,4 +249,22 @@
 
 .countContainer{
   grid-area: countContainer;
+}
+
+/* BOTON TERMINAR COMPRA */
+
+.btnTerminar{
+  text-decoration: none;
+  padding: 10px 25px;
+  background-color: rgb(233, 77, 77);
+  border: 2px solid rgb(43, 49, 49);
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.btnTerminar:hover{
+  transform: scale(1.1, 1.1);
+  color: black;
 }

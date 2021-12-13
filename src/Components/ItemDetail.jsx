@@ -1,7 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 import ItemCount from './ItemCount';
+import { Link } from 'react-router-dom';
 
 const ItemDetail = (props) => {
+    const [ cantidadInCart, setCantidadInCart ] = useState(0);
+
+    function onAdd(cantidad) {
+        setCantidadInCart(cantidad);
+        alert(`Agregaste ${cantidad} productos al carrito`);
+    }
+
     return (
         <div>
             <div className="containerCart">
@@ -13,10 +22,13 @@ const ItemDetail = (props) => {
                 <br />{props.description}</p>
                 <p className="parrafCart"> Quedan {props.stock} en stock</p>
 
-                <div className="countContainer">
-                    <ItemCount stock={props.stock} initial={1}/>
-                </div>
-
+                {cantidadInCart ?
+                    <Link className='btnTerminar' to="/cart"> Terminar Compra </Link>
+                    :
+                    <div className="countContainer">
+                        <ItemCount stock={props.stock} initial={1} onAdd={onAdd}/>
+                    </div>                
+}
                 </div>
             </div>
         </div>
