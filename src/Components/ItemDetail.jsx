@@ -2,12 +2,15 @@ import React from 'react';
 import { useState } from 'react';
 import ItemCount from './ItemCount';
 import { Link } from 'react-router-dom';
+import useCartContext from './CartContext';
 
-const ItemDetail = (props) => {
+const ItemDetail = (props) => { 
     const [ cantidadInCart, setCantidadInCart ] = useState(0);
+    const { addItem } = useCartContext();
 
     function onAdd(cantidad) {
         setCantidadInCart(cantidad);
+        addItem(props, cantidad);
         alert(`Agregaste ${cantidad} productos al carrito`);
     }
 

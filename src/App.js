@@ -6,37 +6,40 @@ import ItemDetailContainer from './Components/ItemDetailContainer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './Components/Cart';
 import Nosotros from './Components/Nosotros';
+import { CartContextProvider } from './Components/CartContext';
 
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar/>
-        <Switch>
+      <CartContextProvider>
+        <BrowserRouter>
+          <NavBar/>
+          <Switch>
 
-          <Route path= "/" exact>
-            <ItemListContainer greeting="My Store"/>
-          </Route>
+            <Route path= "/" exact>
+              <ItemListContainer greeting="My Store"/>
+            </Route>
 
-          <Route path= "/category/:categoryId">
-            <ItemListContainer greeting="Categorías"/>
-          </Route>
+            <Route path= "/category/:categoryId">
+              <ItemListContainer greeting="Categorías"/>
+            </Route>
 
-          <Route path= "/product/:id">
-            <ItemDetailContainer/>
-          </Route>
+            <Route path= "/product/:id">
+              <ItemDetailContainer/>
+            </Route>
 
-          <Route path= "/cart">
-            <Cart/>
-          </Route>
+            <Route path= "/cart">
+              <Cart/>
+            </Route>
 
-          <Route path= "/nosotros">
-            <Nosotros/>
-          </Route>
+            <Route path= "/nosotros">
+              <Nosotros/>
+            </Route>
 
-        </Switch>
-      </BrowserRouter>
+          </Switch>
+        </BrowserRouter>
+      </CartContextProvider>
     </div>
   );
 }
