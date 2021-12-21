@@ -33,10 +33,10 @@ export const CartContextProvider = ({children}) => {
         } else setItemsCart([...itemsCart, {...Item, quantity}]);
     }
 
-    const removeItem = (itemId) => {
+    const removeItem = (id) => {
 
-        itemsCart.find (elemento => elemento.id === itemId)
-        let eliminarDelArray = itemsCart.filter(elemento => elemento.id !== itemId)
+        itemsCart.find (elemento => elemento.id === id)
+        let eliminarDelArray = itemsCart.filter(elemento => elemento.id !== id)
         setItemsCart(eliminarDelArray)
         
     } 

@@ -3,15 +3,15 @@ import './style.css'
 import { useState } from 'react';
 import ItemCount from '../Count/ItemCount';
 import { Link } from 'react-router-dom';
-import useCartContext from '../Context/CartContext';
+// import useCartContext from '../Context/CartContext';
 
-const ItemDetail = (props) => { 
+ function ItemDetail (props) { 
     const [ cantidadInCart, setCantidadInCart ] = useState(0);
-    const { addItem } = useCartContext();
+    // const { addItem, isInCart } = useCartContext();
 
     function onAdd(cantidad) {
         setCantidadInCart(cantidad);
-        addItem(props, cantidad);
+        // addItem(props, cantidad);
         alert(`Agregaste ${cantidad} productos al carrito`);
     }
 
