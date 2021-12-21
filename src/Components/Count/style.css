@@ -1,0 +1,85 @@
+/* RESET */
+*{
+  box-sizing: border-box;
+}
+
+/* CONTADOR */
+.containerCountPather{
+  border-radius: 15px;
+  width: 250px;
+  margin: auto;
+}
+
+.containerCountSon{
+  display: grid;
+  grid-template-areas: "titleCount titleCount titleCount"
+  "btn1 count btn2"
+  "agregar agregar agregar";
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.titleCount{
+  grid-area: titleCount;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.btnRemove{
+  grid-area: btn1;
+  background-color: white;
+  border: 2px solid #c38190;
+  color: #c38190;
+  border-radius: 3px;
+  padding: 3px 10px;
+}
+
+.btnRemove:hover{
+  transform: scale(1.2, 1.2);
+  font-weight: bold;
+  background-color: rgb(43, 49, 49);
+  color: white;
+  
+}
+
+.count{
+  grid-area: count;
+}
+
+.btnSumar{
+  grid-area: btn2;
+  background-color: white;
+  border: 2px solid #c38190;
+  color: #c38190;
+  border-radius: 3px;
+  padding: 3px 10px;
+}
+
+.btnSumar:hover{
+  transform: scale(1.2, 1.2);
+  font-weight: bold;
+  background-color: rgb(43, 49, 49);
+  color: white;
+}
+
+.btnAdd{
+  grid-area: agregar;
+  margin-bottom: 10px;
+  padding: 10px 0px;
+  background-color: white;
+  border: 2px solid #c38190;
+  color: #c38190;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.btnAdd span{
+  margin: 0px 45px;
+}
+
+.btnAdd:hover{
+  transform: scale(1.1, 1.1);
+  background-color: rgb(43, 49, 49);
+  color: white;
+}

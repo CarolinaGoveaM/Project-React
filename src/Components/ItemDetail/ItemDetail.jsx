@@ -1,8 +1,9 @@
 import React from 'react';
+import './style.css'
 import { useState } from 'react';
-import ItemCount from './ItemCount';
+import ItemCount from '../Count/ItemCount';
 import { Link } from 'react-router-dom';
-import useCartContext from './CartContext';
+import useCartContext from '../Context/CartContext';
 
 const ItemDetail = (props) => { 
     const [ cantidadInCart, setCantidadInCart ] = useState(0);

@@ -1,12 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
-import NavBar from './Components/NavBar';
-import ItemListContainer from './Components/ItemListContainer';
-import ItemDetailContainer from './Components/ItemDetailContainer';
+import NavBar from './Components/NavBar/NavBar';
+import ItemListContainer from './Components/ItemList/ItemListContainer';
+import ItemDetailContainer from './Components/ItemDetail/ItemDetailContainer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Cart from './Components/Cart';
-import Nosotros from './Components/Nosotros';
-import { CartContextProvider } from './Components/CartContext';
+import Cart from './Components/Cart/Cart';
+import { CartContextProvider } from './Components/Context/CartContext';
 
 
 function App() {
@@ -31,10 +30,6 @@ function App() {
 
             <Route path= "/cart">
               <Cart/>
-            </Route>
-
-            <Route path= "/nosotros">
-              <Nosotros/>
             </Route>
 
           </Switch>

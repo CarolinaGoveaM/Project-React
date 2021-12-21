@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import './style.css';
 import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router';
 
