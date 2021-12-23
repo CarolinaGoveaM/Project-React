@@ -14,23 +14,23 @@ const Cart = () => {
             <table className="tableCart">
                         <thead>
                             <tr>
-                                <th>Imagen</th>
-                                <th>Producto</th>
-                                <th>Description</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th><button className="btnCart" onClick={() => clear()}>Vaciar Carrito</button></th>
+                                <th className='columnTable'>Imagen</th>
+                                <th className='columnTable'>Producto</th>
+                                <th className='columnTable'>Description</th>
+                                <th className='columnTable'>Cantidad</th>
+                                <th className='columnTable'>Precio</th>
+                                <th><button className="btnVaciar" onClick={() => clear()}>Vaciar Carrito</button></th>
                             </tr>
                         </thead>
                         <tbody>
                             {itemsCart.map((item) => {
                                 return (<tr key={item.id}>
-                                    <td> {item.img}</td>
-                                    <td> {item.name}</td>
-                                    <td> {item.description} </td>
-                                    <td> {item.price} </td>
-                                    <td> $ {item.quantity * item.price} </td>
-                                    <td><button onClick={() => removeItem(item.id)}>Eliminar</button></td>
+                                    <td className='columnTable'> <img className='imgCart' src={item.img} alt="producto"/> </td>
+                                    <td className='columnTable'> {item.name}</td>
+                                    <td className='columnTable'> {item.description} </td>
+                                    <td className='columnTable'> {item.quantity} </td>
+                                    <td className='columnTable'> $ {item.quantity * item.price} </td>
+                                    <td><button className='btnEliminar' onClick={() => removeItem(item.id)}>X</button></td>
                                 </tr>
                             
                                 

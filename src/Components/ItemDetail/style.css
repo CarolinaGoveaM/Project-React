@@ -5,11 +5,11 @@
 
 /* DETAIL CONTAINER */
 
-.containerCart{
+.containerCard{
   margin-top: 20px;
 }
 
-.cart{
+.card{
   display: grid;
   grid-template-areas: 
   "img name"
@@ -22,30 +22,30 @@
   grid-column-gap: 30px;
 }
 
-.imgCart{
+.imgCard{
   grid-area: img;
-  height: 410px;
+  height: 300px;
   border-radius: 20px;
   border: 2px solid rgb(43, 49, 49);
   overflow: hidden;
 }
 
-.titleCart{
+.titleCard{
   grid-area: name;
   align-items: end;
 }
 
-.priceCart{
+.priceCard{
   grid-area: price;
   align-items: start;
 }
 
-.parrafCart{
+.parrafCard{
   grid-area: stock;
   font-style: italic;
 }
 
-.descripCart{
+.descripCard{
   grid-area: descrip;
 }
 
@@ -55,7 +55,7 @@
 
 /* BOTON TERMINAR COMPRA */
 
-.btnTerminar{
+.btnFinish{
   text-decoration: none;
   padding: 10px 25px;
   background-color: rgb(233, 77, 77);
@@ -66,7 +66,7 @@
   font-weight: bold;
 }
 
-.btnTerminar:hover{
+.btnFinish:hover{
   transform: scale(1.1, 1.1);
   color: black;
 }

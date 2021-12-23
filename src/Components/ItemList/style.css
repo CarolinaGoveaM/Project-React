@@ -14,13 +14,13 @@
 .cartItem{
   margin: 50px;
   border: 2px solid rgb(43, 49, 49);
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
   background-color: #c38190;
 }
 
 .imgCartItem{
-  width: 300px;
+  width: 240px;
   border-bottom: 1px solid rgb(43, 49, 49);
 }
 
@@ -32,89 +32,17 @@
   font-size: 1rem;
 }
 
-.btnCart{
-  width: 300px;
-  padding: 10px 25px;
+.btnCartItem{
+  width: 240px;
+  padding: 5px 0px;
   background-color: rgb(43, 49, 49);
   color: white;
   border: 2px solid rgb(43, 49, 49);
-  border-radius: 10px;
+  border-radius: 5px;
  
 }
 
-.btnCart:hover{
+.btnCartItem:hover{
   transform: scale(1.1, 1.1);
   font-weight: bold;
-}
-
-.parrafCartItem{
-  font-style: italic;
-}
-
-/* DETAIL CONTAINER */
-
-.containerCart{
-  margin-top: 20px;
-}
-
-.cart{
-  display: grid;
-  grid-template-areas: 
-  "img name"
-  "img price"
-  "img descrip"
-  "img stock"
-  "img countContainer";
-  justify-content: center;
-  align-items: center;
-  grid-column-gap: 30px;
-}
-
-.imgCart{
-  grid-area: img;
-  height: 410px;
-  border-radius: 20px;
-  border: 2px solid rgb(43, 49, 49);
-  overflow: hidden;
-}
-
-.titleCart{
-  grid-area: name;
-  align-items: end;
-}
-
-.priceCart{
-  grid-area: price;
-  align-items: start;
-}
-
-.parrafCart{
-  grid-area: stock;
-  font-style: italic;
-}
-
-.descripCart{
-  grid-area: descrip;
-}
-
-.countContainer{
-  grid-area: countContainer;
-}
-
-/* BOTON TERMINAR COMPRA */
-
-.btnTerminar{
-  text-decoration: none;
-  padding: 10px 25px;
-  background-color: rgb(233, 77, 77);
-  border: 2px solid rgb(43, 49, 49);
-  color: black;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.btnTerminar:hover{
-  transform: scale(1.1, 1.1);
-  color: black;
 }

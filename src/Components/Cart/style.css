@@ -4,215 +4,68 @@
 }
 
 /* CART WIDGET */
-.containerImgCart{
+.containerImgCartW{
   grid-area: cart;
   margin: 10px;
   transition: 0.5s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.imgCarrito{
+.imgCartW{
   height: 50px;
 }
 
-.containerImgCart:hover{
+.containerImgCartW:hover{
     background-color: #c38190;
     transform: scale(1.1, 1.1)
 }
 
-/* CONTADOR */
-.containerCountPather{
-  border-radius: 15px;
-  width: 250px;
+.numberCartW{
+  background-color: #c38190;
+  border-radius: 5px;
+  padding: 8px;
+
+}
+
+/* CART */
+.tableCart{
   margin: auto;
 }
 
-.containerCountSon{
-  display: grid;
-  grid-template-areas: "titleCount titleCount titleCount"
-  "btn1 count btn2"
-  "agregar agregar agregar";
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+.imgCart{
+  width: 100px;
+  border-radius: 10px;
+  border: 2px solid rgb(43, 49, 49);
+  overflow: hidden;
 }
 
-.titleCount{
-  grid-area: titleCount;
-  font-weight: bold;
-  font-size: 1.5rem;
+.columnTable{
+padding-right: 30px;
 }
 
-.btnRemove{
-  grid-area: btn1;
-  background-color: white;
-  border: 2px solid #c38190;
-  color: #c38190;
-  border-radius: 3px;
-  padding: 3px 10px;
-}
-
-.btnRemove:hover{
-  transform: scale(1.2, 1.2);
-  font-weight: bold;
+.btnVaciar{
+  width: 120px;
+  padding: 5px 5px;
   background-color: rgb(43, 49, 49);
-  color: white;
-  
-}
-
-.count{
-  grid-area: count;
-}
-
-.btnSumar{
-  grid-area: btn2;
-  background-color: white;
-  border: 2px solid #c38190;
-  color: #c38190;
-  border-radius: 3px;
-  padding: 3px 10px;
-}
-
-.btnSumar:hover{
-  transform: scale(1.2, 1.2);
-  font-weight: bold;
-  background-color: rgb(43, 49, 49);
-  color: white;
-}
-
-.btnAdd{
-  grid-area: agregar;
-  margin-bottom: 10px;
-  padding: 10px 0px;
-  background-color: white;
-  border: 2px solid #c38190;
-  color: #c38190;
-  font-weight: bold;
+  color: rgb(233, 77, 77);
+  border: 2px solid rgb(43, 49, 49);
   border-radius: 5px;
 }
 
-.btnAdd span{
-  margin: 0px 45px;
-}
-
-.btnAdd:hover{
-  transform: scale(1.1, 1.1);
-  background-color: rgb(43, 49, 49);
-  color: white;
-}
-
-/* CART - ITEM */
-
-.containerCartItem{
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.cartItem{
-  margin: 50px;
-  border: 2px solid rgb(43, 49, 49);
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #c38190;
-}
-
-.imgCartItem{
-  width: 300px;
-  border-bottom: 1px solid rgb(43, 49, 49);
-}
-
-.titleCartItem{
-  font-size: 1.5rem;
-}
-
-.priceCartItem{
-  font-size: 1.5rem;
-}
-
-.btnCart{
-  padding: 10px 25px;
-  background-color: white;
-  border: 2px solid rgb(43, 49, 49);
-  color: #c38190;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.btnCart:hover{
+.btnVaciar:hover{
   transform: scale(1.1, 1.1);
   font-weight: bold;
+}
+
+.btnEliminar{
   background-color: rgb(43, 49, 49);
-  color: white;
-}
-
-.parrafCartItem{
-  font-style: italic;
-}
-
-/* DETAIL CONTAINER */
-
-.containerCart{
-  margin-top: 20px;
-}
-
-.cart{
-  display: grid;
-  grid-template-areas: 
-  "img name"
-  "img price"
-  "img descrip"
-  "img stock"
-  "img countContainer";
-  justify-content: center;
-  align-items: center;
-  grid-column-gap: 30px;
-}
-
-.imgCart{
-  grid-area: img;
-  height: 410px;
-  border-radius: 20px;
+  color: rgb(233, 77, 77);
   border: 2px solid rgb(43, 49, 49);
-  overflow: hidden;
 }
 
-.titleCart{
-  grid-area: name;
-  align-items: end;
-}
-
-.priceCart{
-  grid-area: price;
-  align-items: start;
-}
-
-.parrafCart{
-  grid-area: stock;
-  font-style: italic;
-}
-
-.descripCart{
-  grid-area: descrip;
-}
-
-.countContainer{
-  grid-area: countContainer;
-}
-
-/* BOTON TERMINAR COMPRA */
-
-.btnTerminar{
-  text-decoration: none;
-  padding: 10px 25px;
-  background-color: rgb(233, 77, 77);
-  border: 2px solid rgb(43, 49, 49);
-  color: black;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.btnTerminar:hover{
+.btnEliminar:hover{
   transform: scale(1.1, 1.1);
-  color: black;
 }

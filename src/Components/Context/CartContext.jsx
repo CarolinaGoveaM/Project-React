@@ -28,9 +28,9 @@ export const CartContextProvider = ({children}) => {
                 return itemInCart.id !== item.id;
             });
 
-            setItemsCart([...cartFilter, ...itemAdd]);
+            setItemsCart([...cartFilter, itemAdd]);
 
-        } else setItemsCart([...itemsCart, {...Item, quantity}]);
+        } else setItemsCart([...itemsCart, {...item, quantity}]);
     }
 
     const removeItem = (id) => {
