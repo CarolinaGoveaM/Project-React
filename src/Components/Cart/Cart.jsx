@@ -1,92 +1,71 @@
-import React from 'react';
-import { useCartContext } from '../Context/CartContext';
-import { Link } from 'react-router-dom';
-// import { addDoc, collection, doc, writeBatch, Timestamp, getDoc } from 'firebase/firestore';
-// import { db } from '../../services/firebase/firebase';
+import React, {useState, useRef} from 'react';
+import useCartContext from '../Context/CartContext';
+// import CartContext from '../Context/CartContext';
+import { addDoc, collection, Timestamp, doc, writeBatch, getDoc} from 'firebase/firestore';
+import { db } from '../../services/firebase/firebase';
+import Form from '../Cart/Form';
+
 
 const Cart = () => {
+    const [processingOrder, setProcessingOrder] = useState(false);
+    const [contact, setContact] = useState(
+        {
+            name: '',
+            phone: '',
+            email:'',
+        })
 
-    // const [processingOrder, setProcessingOrder] = useState (false);
-    // const [contact, setContact] = useState ({
-    //     name: '',
-    //     phone: '',
-    //     email: '',
-    // });
-
-    // const { user } = useCartContext ();
-    // const contactFormRef = useRef ();
-
-    // const confirmOrder = () => {
-    //     setProcessingOrder(true)
-
-    //     const objOrder = {
-    //         buyer: user,
-    //         items: itemsCart,
-    //         date: Timestamp.fromDate(new Date()),
-    //         total: item.quantity * item.price,
-
-    //     }
-    // }
 
 
     const { itemsCart, clear, removeItem } = useCartContext();
+    const { user } = useCartContext();
+    const contactFormRef = useRef();
 
-    // const { item } = itemsCart;
+    const confirmOrder = () => {
+        setProcessingOrder(true)
 
-    // const [ processingOrder, setProcessingOrder ] = useState(false);
+        const objOrder = {
+            buyer: user,
+            items: itemsCart,
+            name: contact.name,
+            phone: contact.phone,
+            email: contact.email,
+            date: Timestamp.fromDate(new Date()),
+        }
 
-    // const formName = useRef('');
-    // const formPhone = useRef('');
-    // const formEmail = useRef('');
+        const batch = writeBatch(db);
+        const outOfStock = [];
 
-    // const confirmOrder = () => {
+        objOrder.items.forEach((prod) => {
+            getDoc(doc(db, 'items', prod.id)).then((documentSnapshot) => {
+                if (documentSnapshot.data().stock >= prod.quantity ) {
+                    batch.update(doc(db, 'items', documentSnapshot.id), {
+                        stock: documentSnapshot.data().stock - prod.quantity
+                    });
+                } else{
+                    outOfStock.push({id: documentSnapshot.id, ...documentSnapshot.data()})
+                };
+            });
+        });
 
-    //     const objOrder = {
-    //         buyer: {
-    //             name: formName.current.value,
-    //             phone: formPhone.current.value,
-    //             email: formEmail.current.value
-    //         },
-    //         items: item,
-    //         total: item.quantity * item.price,
-    //     }
+        if(outOfStock.length === 0){
+            addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
+                
+                batch.commit().then(() => {
+                    console.log({id});
+                });
+            }).catch((error) => {
+                console.log('Error', error)
+            }).finally(() => {
+                    setProcessingOrder(false)
+                    clear();
+            })
+        };
+    };
 
-    //     const batch = writeBatch(db);
-    //     const outOfStock = [];
-
-    //     objOrder.items.forEach((prod) => {
-    //         getDoc(doc(db, 'itemsCart', prod.id)).then((documentSnapshot) => {
-    //             if(documentSnapshot.data().stock >= prod.quantity) {
-    //                 batch.update(doc(db, 'itemsCart', documentSnapshot.id), {
-    //                     stock: documentSnapshot.data().stock - prod.quantity
-    //                 });
-    //             } else {
-    //                 outOfStock.push({ id: documentSnapshot.id, ...documentSnapshot.data() });
-    //             }
-    //         });
-    //     });
-
-    //     if(outOfStock.length === 0){
-    //         addDoc(collection(db, 'orders'), objOrder).then(({ id }) => {
-    //             batch.commit().then(() => {
-    //                 console.log(id); 
-    //             });
-    //         });
-    //     }
-
-    //     setTimeout(() => {
-    //         clear();
-    //     }, 1000);
-    // }
-
-    // useEffect(() => {
-    //     setProcessingOrder(false);
-    //     if(item.length === 0){
-    //         setProcessingOrder(false);
-    //     } else {
-    //         setProcessingOrder(true);
-    //     }
-    // }, [item]);
+    if(processingOrder) {
+        return <h1>Procesando compra</h1>
+    }
 
     if (itemsCart.length === 0) {return (
         <div>
@@ -95,6 +74,9 @@ const Cart = () => {
     )
     }else {
         return (
+
+            
+            
             <table className="tableCart">
                         <thead>
                             <tr>
@@ -121,7 +103,6 @@ const Cart = () => {
                             
                                 
                             ) })}
-                            <Link to="/Form">COMPRAR</Link>
                         </tbody>
                     </table>
         )
