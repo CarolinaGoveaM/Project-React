@@ -1,42 +1,52 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import useCartContext from '../Context/CartContext';
-// import CartContext from '../Context/CartContext';
 import { addDoc, collection, Timestamp, doc, writeBatch, getDoc} from 'firebase/firestore';
 import { db } from '../../services/firebase/firebase';
 import Form from '../Cart/Form';
+import { Link } from 'react-router-dom';
+import './style.css';
 
 
 const Cart = () => {
     const [processingOrder, setProcessingOrder] = useState(false);
-    const [contact, setContact] = useState(
-        {
+    const [orderForm, setOrderForm] = useState(false);
+    const [orderId, setOrderId] = useState(null);
+
+    const [buyer, setBuyer] = useState({
             name: '',
             phone: '',
             email:'',
         })
 
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setBuyer (values => ({ ...values, [name]: value}));
+    }
 
+    const cartTotalPrice = () => {
+        return itemsCart.reduce ((total, cartItem) => {
+            return (total + cartItem.quantity * cartItem.price)
+        }, 0);
+    }
 
     const { itemsCart, clear, removeItem } = useCartContext();
-    const { user } = useCartContext();
-    const contactFormRef = useRef();
 
-    const confirmOrder = () => {
+    const confirmOrder = (e) => {
+        e.preventDefault();
         setProcessingOrder(true)
 
-        const objOrder = {
-            buyer: user,
+        const order = {
+            buyer: {name: buyer.name, phone: buyer.phone, email: buyer.email},
             items: itemsCart,
-            name: contact.name,
-            phone: contact.phone,
-            email: contact.email,
             date: Timestamp.fromDate(new Date()),
+            total: cartTotalPrice(),
         }
 
         const batch = writeBatch(db);
         const outOfStock = [];
 
-        objOrder.items.forEach((prod) => {
+        order.items.forEach((prod) => {
             getDoc(doc(db, 'items', prod.id)).then((documentSnapshot) => {
                 if (documentSnapshot.data().stock >= prod.quantity ) {
                     batch.update(doc(db, 'items', documentSnapshot.id), {
@@ -49,23 +59,30 @@ const Cart = () => {
         });
 
         if(outOfStock.length === 0){
-            addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
-                
-                batch.commit().then(() => {
-                    console.log({id});
-                });
-            }).catch((error) => {
-                console.log('Error', error)
-            }).finally(() => {
-                    setProcessingOrder(false)
+            addDoc(collection(db, 'orders'), order).then(({id}) => {
+                    batch.commit().then(() => {
+                    console.log('Se ha generado la orden: ' + id);
+                    setOrderId(id);
                     clear();
-            })
+                    setProcessingOrder(false);
+                });
+            });
+            };
         };
-    };
 
     if(processingOrder) {
-        return <h1>Procesando compra</h1>
+        return <h1>Procesando compra...</h1>
     }
+
+    if (orderId){
+        return (
+            <div>
+                <h1>Tu compra se realizó correctamente</h1>
+                <p>Tu Ticket de compra es: <strong> ID Nº {orderId}</strong></p>
+                <Link className='btnLinkTicket' to="/">Seguir comprando</Link>
+            </div>
+        )
+    };
 
     if (itemsCart.length === 0) {return (
         <div>
@@ -74,9 +91,7 @@ const Cart = () => {
     )
     }else {
         return (
-
-            
-            
+            <>
             <table className="tableCart">
                         <thead>
                             <tr>
@@ -98,15 +113,25 @@ const Cart = () => {
                                     <td className='columnTable'> $ {item.quantity * item.price} </td>
                                     <td><button className='btnEliminar' onClick={() => removeItem(item.id)}>X</button></td>
                                 </tr>
-
-                                
-                            
-                                
-                            ) })}
+                            )
+                            })}
                         </tbody>
                     </table>
-        )
 
+                    { orderForm? 
+                    
+                        <Form
+                            confirmOrder={confirmOrder}
+                            handleChange={handleChange}
+                            buyer={buyer}
+                        />
+                    :
+                    <div>
+                        <button className='btnOrder' type="button" onClick={() => setOrderForm(true)}>Crear Orden de Compra</button>
+                    </div>
+                    }
+                    </>
+        )
     }
 }
 

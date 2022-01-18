@@ -1,52 +1,26 @@
-import { useState } from 'react';
+import './style.css';
 
-const Form = ({ setContact }) => {
-    const [phone, setPhone] = useState('')
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
+const Form = ({ buyer, confirmOrder, handleChange}) => {
+      return (          
+          <form className='formOrder'>
+            <div className='containerInput'>
+            <label className='formLabel'>Nombre y Apellido</label>
+            <input type='text' value={buyer.name} name="name" placeholder="Escribe tu nombre" required onChange={handleChange}/>
+            </div>
 
-    const handleForm = (e) => {
-        e.preventDefault()
+            <div className='containerInput'>
+            <label className='formLabel'>Teléfono</label>
+            <input type='text' value={buyer.phone} name="phone" placeholder="Escribe tu número de tlf" required onChange={handleChange}/>
+            </div>
+            
+            <div className='containerInput'>
+            <label className='formLabel'>Correo</label>
+            <input type='text' value={buyer.email} name="email" placeholder="Escribe tu correo" required onChange={handleChange}/>
+            </div>
 
-        const objContact = {
-            phone,
-            name,
-            email
-        }
-        setContact(objContact)
-        setPhone('')
-        setName('')
-        setEmail('')
-    }
-
-    return (
-        <div>
-          <div>Contacto</div>
-          <form onSubmit={handleForm}>
-            <label>Telefono:
-              <input
-                type='text'
-                value={phone}
-                onChange={({ target }) => setPhone(target.value)}
-              />
-            </label>
-            <label>Name:
-              <input
-                type='text'
-                value={name}
-                onChange={({ target }) => setName(target.value)}
-              />
-            </label>
-            <label>Email: 
-              <input
-                type='text'
-                value={email}
-                onChange={({ target }) => setEmail(target.value)}
-              />
-            </label>
-            <button type='submit'>Confirmar</button>
+            <button className='formBtn' onClick={confirmOrder}>Finalizar Compra</button>
+            
           </form>
-        </div>
       )
 }
 

@@ -69,3 +69,73 @@ padding-right: 30px;
 .btnEliminar:hover{
   transform: scale(1.1, 1.1);
 }
+
+/* FORMULARIO ORDER */
+.formOrder{
+  margin-top: 80px;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 20px 30px;
+  background-color: #d8acb6;
+}
+
+.containerInput{
+  margin-bottom: 15px;
+}
+
+.formLabel{
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.formBtn{
+  padding: 10px 10px;
+  background-color: rgb(43, 49, 49);
+  color: white;
+  border: 2px solid #c38190;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 15px;
+  }
+  
+  .formBtn:hover{
+    transform: scale(1.1, 1.1);
+    font-weight: bold;
+  }
+
+/* CART ORDER */
+
+.btnOrder{
+  padding: 10px 5px;
+  background-color: rgb(43, 49, 49);
+  color: white;
+  border: 2px solid #c38190;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 15px;
+  }
+  
+  .btnOrder:hover{
+    transform: scale(1.1, 1.1);
+    font-weight: bold;
+  }
+
+/* TICKET DE COMPRA */
+
+.btnLinkTicket{
+  text-decoration: none;
+  padding: 10px 10px;
+  background-color: rgb(43, 49, 49);
+  color: white;
+  border: 2px solid #c38190;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.btnLinkTicket:hover{
+  transform: scale(1.1, 1.1);
+  font-weight: bold;
+}
