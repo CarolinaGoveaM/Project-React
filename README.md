@@ -53,10 +53,10 @@ En el proyecto se realizaron 2 contextos alojados en src/Components/Context:
  CartContext: se guardan los datos necesarios de los productos para realizar la orden del cliente:
 
 		1. itemsCart: se exporta el array de productos que el cliente sumo al carrito
-        5. isInCart: se puede saber si un producto ya se encuentra en el carrito
-		2. addItem: permite agregar un item al contexto
-		3. removeItem: permite remover un item específico del contexto
-		4. clear: borra todos los datos del contexto
+        2. isInCart: se puede saber si un producto ya se encuentra en el carrito
+		3. addItem: permite agregar un item al contexto
+		4. removeItem: permite remover un item específico del contexto
+		5. clear: borra todos los datos del contexto
 		6. getQuantityCart: devuelve la cantidad de productos 		
 
 		
