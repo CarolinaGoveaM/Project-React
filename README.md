@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# SCRUNCHIES CAROLINA
+La aplicación es un E-commerce de scrunchies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tecnologia utilizada
++CSS
++JS
++HTML
 
-## Available Scripts
+# Clonar repositorio
++git clone *URL del Proyecto*
 
-In the project directory, you can run:
+# Instalar dependencias
++npm install
 
-### `npm start`
+# Ejecutar proyecto
++npm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# BackEnd
+El backend esta desarrollado en firestore, en la misma se alojan 2 tipos de archivos:
+- /items: en esta dirección se guarda un archivo con todos los datos del producto:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+		1. id: String(autogenerado por firestore)
+		2. category: String
+		3. description: String
+		4. img: String
+        5. name: String
+		6. price: Number
+		7. stock: Number
 
-### `npm test`
+- /orders: en esta dirección se guardan los datos de las órdenes realizadas:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+		1. id: String(autogenerado por firestore)
+		2. buyer: object [email:String, name:String, phone:Number]
+		3. items: ArrayProducts
+		4. total: Number
 
-### `npm run build`
+# Componentes
+Los componentes de la aplicación están divididos en diferentes carpetas ubicadas en la raiz "Components":
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Cart: contiene 3 componentes: -"Cart" en el se desarrolla el carrito de compras del usuario; -"Form" en el se desarrolla un formulario se le pide el ingreso de datos necesarios para crear la orden; -"CartWidget" es un contador para poder agregar mas productos ya agregarlos al Cart.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Count: contiene el componente "ItemCount" se encarga de validar el stock del producto y permite contar la cantidad de productos a agregar.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ItemDetail: contiene 2 componentes: -"ItemDetail", se encarga de renderizar los datos otorgados por el ItemDetailContainer, este componente implementa el ItemCount; -"ItemDetailContainer" que se encarga de obtener toda la información necesaria para renderizar el detalle de un producto, este componente pasa dicha información al componente ItemDetail.
 
-### `npm run eject`
+- ItemList: contiene 3 componentes: -"ItemList" que requiere un array de productos, se encarga de hacer un map y pasarle los datos al Item; -"ItemListContainer", se encarga de consultar todos los productos y pasarlos al ItemList; -"Item", recibe todos los datos requeridos para renderizar un producto en pantalla (previsualización del producto).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- NavBar: contiene el componente "NavBar".
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Context
+En el proyecto se realizaron 2 contextos alojados en src/Components/Context:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ CartContext: se guardan los datos necesarios de los productos para realizar la orden del cliente:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+		1. itemsCart: se exporta el array de productos que el cliente sumo al carrito
+        5. isInCart: se puede saber si un producto ya se encuentra en el carrito
+		2. addItem: permite agregar un item al contexto
+		3. removeItem: permite remover un item específico del contexto
+		4. clear: borra todos los datos del contexto
+		6. getQuantityCart: devuelve la cantidad de productos 		
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+		
+# Servicios
+Solo hay un servicio alojado en src/service/firebase, en el mismo se inicializa la conexión con firebase.
